@@ -30,7 +30,7 @@ app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
-app.UseCors(builder => builder.WithOrigins("http://127.0.0.1:5500"));
+app.UseCors(coarse => coarse.WithOrigins("http://127.0.0.1:5500"));
 //app.UseCors("MyJSPolicy");
 
 app.MapControllers();

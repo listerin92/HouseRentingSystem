@@ -6,20 +6,32 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<HouseRentingDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     {
-        options.SignIn.RequireConfirmedAccount = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedAccount");
-        options.SignIn.RequireConfirmedEmail = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedEmail");
-        options.SignIn.RequireConfirmedPhoneNumber = builder.Configuration.GetValue<bool>("Identity:RequireConfirmedPhoneNumber");
-        options.Password.RequireDigit = builder.Configuration.GetValue<bool>("Identity:RequireDigit");
-        options.Password.RequireUppercase = builder.Configuration.GetValue<bool>("Identity:RequireUppercase");
-        options.Password.RequireNonAlphanumeric = builder.Configuration.GetValue<bool>("Identity:RequireNonAlphanumeric");
+        options.SignIn.RequireConfirmedAccount = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireConfirmedAccount");
+        options.SignIn.RequireConfirmedEmail = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireConfirmedEmail");
+        options.SignIn.RequireConfirmedPhoneNumber = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireConfirmedPhoneNumber");
+        options.Password.RequireDigit = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireDigit");
+        options.Password.RequireUppercase = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireUppercase");
+        options.Password.RequireNonAlphanumeric = 
+            builder.Configuration
+                .GetValue<bool>("Identity:RequireNonAlphanumeric");
     })
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<HouseRentingDbContext>();
 
 builder.Services.AddControllersWithViews();
 

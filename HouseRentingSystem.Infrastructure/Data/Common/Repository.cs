@@ -10,7 +10,7 @@ namespace HouseRentingSystem.Infrastructure.Data.Common
     /// </summary>
     public class Repository : IRepository
     {
-        public Repository(ApplicationDbContext context)
+        public Repository(HouseRentingDbContext context)
         {
             Context = context;
         }
